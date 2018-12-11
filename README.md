@@ -11,6 +11,7 @@ Make the virtual environment:
 Download the Bllip Parser. TODO
 
 ## Usage
+Place reports in a single column csv `{reports_path}` where each row consists of a single report contained in quotes.
 `python label.py --reports_path {reports_path}`
 
 ## Contributions

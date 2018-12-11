@@ -1,13 +1,15 @@
 """Define report loader class."""
 import re
 import bioc
+import pandas as pd
 from negbio.pipeline import text2bioc, ssplit
+
+from constants import *
 
 
 class Loader(object):
     """Report impression loader."""
     def __init__(self, reports_path, extract_impression=False):
-        # Note: assumes reports are newline-separated.
         self.reports_path = reports_path
         self.extract_impression = extract_impression
         self.punctuation_spacer = str.maketrans({key: f"{key} "
@@ -19,8 +21,9 @@ class Loader(object):
     def load(self):
         """Load and clean the reports."""
         collection = bioc.BioCCollection()
-        with self.reports_path.open() as f:
-            reports = f.read().splitlines()
+        reports = pd.read_csv(self.reports_path,
+                              header=None,
+                              names=[REPORTS])[REPORTS].tolist()
 
         for i, report in enumerate(reports):
             clean_report = self.clean(report)
