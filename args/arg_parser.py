@@ -12,8 +12,7 @@ class ArgParser(object):
         # Input report parameters.
         parser.add_argument('--reports_path',
                             required=True,
-                            help='Path to file with radiology reports.' +
-                                 'TODO: add formatting instructions.')
+                            help='Path to file with radiology reports.')
         parser.add_argument('--extract_impression',
                             action='store_true',
                             help='Extract the impression section of the' +
