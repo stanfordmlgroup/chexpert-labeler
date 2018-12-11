@@ -1,0 +1,12 @@
+mass
+nodular density
+nodular densities
+nodular opacity
+nodular opacities
+nodular opacification
+nodule
+lump
+cavitary lesion
+carcinoma
+neoplasm
+tumor

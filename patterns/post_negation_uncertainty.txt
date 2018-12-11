@@ -1,0 +1,159 @@
+# Added Rules
+
+# Stable/unchanged silhouette/cardiomediastinal
+#{lemma:/mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} > {} ({} > {} {lemma:/stable|unchanged/}) // Allows for Stable enlargement of silhouette
+{lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} > {dependency:/amod/} {lemma:/stable|unchanged/}
+{lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} > {} ({lemma:/change/} > {dependency:/neg/} {})
+
+# Silhouette/cardiomediastinal is stable|unchanged|not changed
+{lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} < {dependency:/nsubj/} {lemma:/stable|unchanged/}
+{lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} < {} ({lemma:/change/} > {dependency:/neg/} {})
+
+# {} < {} ({lemma:/change/} > {dependency:/neg/} {})
+
+# Silhouette/cardiomediastinal similar to prior
+{lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} < {} ({lemma:/similar/} > {dependency:/nmod:to/} {lemma:/prior/})
+{lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} < {} ({lemma:/similar/} > {dependency:/nmod:to/} ({} >{} {lemma:/prior/}))
+{lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} > {} ({lemma:/similar/} > {dependency:/nmod:to/} {lemma:/prior/})
+{lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} > {} ({lemma:/similar/} > {dependency:/nmod:to/} ({} >{} {lemma:/prior/}))
+
+# Stable apparence of silhouette/cardiomediastinal
+{lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} < {dependency:/nmod:of/} ({lemma:/appearance/} > {} {lemma:/stable/})
+
+{} < {} ({lemma:/excluded/} > {dependency:/neg/} {})
+{} < {dependency:/nmod:for/} {lemma:/suspicious/}
+{} < {dependency:/dobj/} ({lemma:/represent/} > {dependency:/advmod/} {lemma:/possibly/})
+{} > {dependency:/cc/} {lemma:/and.or/}
+{} < {dependency:/conj:and.or/} {}
+{} > {} {lemma:/new/} & > {dependency:/neg/} {lemma:/no/}
+
+{} < {dependency:/dep/} ({} > {dependency:/acl:relcl/} ({lemma:/represent/} < {dependency:/aux/} {lemma:/may/}))
+{} < {dependency:/nmod:for/} {lemma:/worrisome/}
+
+# XXX versus YYY
+{} < {dependency:/conj:versus/} {}
+{} > {dependency:/conj:versus/} {}
+
+# {} < {dependency:/nsubjpass/} ({lemma:/change/} > {dependency:/neg/} {})
+({lemma:/angle/} > {dependency:/nsubj/} {lemma:/costophrenic/}) > {dependency:/nmod:of/} {lemma:/blunt.*/}
+{} < {lemma:/nsubj/} ({} > {} ({lemma:/likely/} > {} {lemma:/less/})) 
+
+{} < {dependency:/nmod:out/} {lemma:/cannot/}
+
+# outgoing edge
+{} >{} {lemma:/possible|possibly|presumably|probable|questionable|suspect|suspected|suspicious/}
+{} >{} {lemma:/question/}
+
+# May/might/would/could be XXX
+{} > {} {lemma:/may|might|would|could/}
+
+# '{} >{dependency:/cop/} {lemma:/may|would|could/}
+
+# incoming edge
+{} <{dependency:/nmod:of/} {lemma:/question|suggestion/}
+#{} <{dependency:/dobj/} {lemma:/suspect|favor|suggest|suggesting|question|consider/}
+{} <{dependency:/dobj/} {lemma:/suspect|favor|question|consider/}
+{} <{dependency:/nmod:for/} {lemma:/concern|suspicion/}
+{} <{dependency:/nsubjpass/} {lemma:/suspect/}
+{} <{} {lemma:/possible/}
+
+# parsing error
+# suspected XXX
+{} <{dependency:/dobj/} {lemma:/suspect/}
+{} >{dependency:/advmod/} {lemma:/suspect/}
+
+# maybe due to XXX
+{} <{dependency:/dep/} {lemma:/maybe/}
+
+# may/could represent/reflect/indicate/include XXX
+{} <{dependency:/dobj/} ({lemma:/reflect|represent|indicate|include/} >{} {lemma:/may|could|would|might|possibly|can/})
+
+# may/could represent/reflect/indicate/include the presence of XXX
+{} < {} ({lemma:/presence/} <{dependency:/dobj/} ({lemma:/reflect|represent|indicate|include/} >{} {lemma:/may|could|would|might|possibly|can/}))
+
+# maybe secondary to XXX
+{} <{dependency:/nmod:to/} {lemma:/secondary/}
+
+# may be due to XXX
+{} <{dependency:/nmod:to/} ({lemma:/due/} >{} {lemma:/can|could|may|would|possibly/})
+
+# could related to XXX
+{} <{dependency:/nmod:to/} ({lemma:/relate/} >{} {lemma:/can|could|may|would|possibly/})
+
+# may be compatible with XXX
+{} <{dependency:/nmod:with/} ({lemma:/compatible/} >{} {lemma:/be|could|may|would/})
+
+# question left XXX
+{} <{dependency:/dobj/} ({lemma:/left/} <{} {lemma:/question/})
+{} >{} {lemma:/left/} <{} {lemma:/question/}
+
+# differential diagnosis includes
+{} <{dependency:/dobj/} ({lemma:/include/} >{} ({lemma:/diagnosis/} >{} {lemma:/differential/}))
+
+# may be XXX
+{} <{} {lemma:/be/} >{} {lemma:/may|could|would/}
+
+# parsing error
+# XXX suspected
+{} <{dependency:/nsubj/} {lemma:/suspect/,tag:/VBN/}
+
+# Correlation for symptoms of XXX
+{} < {dependency:/nmod:of/} ({lemma:/symptom/} < {dependency:/nmod:for/} {lemma:/correlation/})
+
+# borderline heart size
+{lemma:/heart/} < {dependency:/compound/} ({lemma:/size/} > {} {lemma:/borderline/})
+
+# XXX could/might/may/possibly be present
+{} < {} ({lemma:/present/} > {dependency:/aux/} {lemma:/could|might|may|possibly|can/})
+
+# XXX is poorly evaluated
+{} < {} ({lemma:/evaluate/} > {dependency:/advmod/} {lemma:/poorly/})
+
+# XXX is incompletely evaluated
+{} < {} ({lemma:/evaluate/} > {dependency:/advmod/} {lemma:/incompletely/})
+
+# XXX is not well visualized/evaluated
+{} < {} ({lemma:/evaluate|visualize/} >{dependency:/neg/} {})
+{} > {} ({lemma:/evaluate|visualize/} > {dependency:/neg/} {})
+
+# obscuring the XXX | XXX is obscured | obscured XXX
+{} < {} {lemma:/obscure/}
+
+# XXX could appear
+{} < {dependency:/nsubj/} ({lemma:/appear/} > {} {lemma:/could|may|might|can/})
+
+# may be consistent/compatible with XXX
+{} < {dependency:/nmod:with/} ({lemma:/consistent/} > {} {lemma:/may|might|can|could/})
+
+# correlate clinically for XXX
+{} < {dependency:/nmod:for/} ({lemma:/correlate/} > {dependency:/advmod/} {lemma:/clinically/})
+
+# correlate clinically for evidence of XXX
+{} < {dependency:/nmod:of/} ({lemma:/evidence|sign|signs|symptoms|symptom/} < {dependency:/nmod:for/} ({lemma:/correlate/} > {dependency:/advmod/} {lemma:/clinically/}))
+
+# XXX are not clearly seen
+{} < {} (({lemma:/see/} > {dependency:/neg/} {}) > {} {lemma:/clearly/})
+{} > {} (({lemma:/see/} > {dependency:/neg/} {}) > {} {lemma:/clearly/})
+
+# possibly reflecting a XXX
+{} < {} ({lemma:/reflect/} > {} {lemma:/possibly/})
+
+# XXX was not appreciated
+{} < {} ({lemma:/appreciate/} > {dependency:/neg/} {})
+
+# XXX may|might|could (also) have this appearance
+{} < {} (({lemma:/have/} > {} {lemma:/may|might|could/}) > {} {lemma:/appearance/})
+
+# vascular congestion
+# pulmonary congestion
+# indistinctness
+# vascular prominence
+{lemma:/congestion/} > {} {lemma:/vascular/}
+{lemma:/congestion/} > {} {lemma:/pulmonary/}
+{lemma:/indistinctness/}
+{lemma:/prominence/} > {} {lemma:/vascular/}
+
+# XXX or YYY
+{} > {dependency:/conj:or/} {}
+{} < {dependency:/conj:or/} {}
+
