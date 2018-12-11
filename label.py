@@ -9,7 +9,7 @@ from constants import *
 
 def label(args):
     """Label the provided report(s)."""
-    
+
     # Load the reports
     loader = Loader(args.reports_path, args.extract_impression)
 
@@ -38,6 +38,7 @@ def label(args):
         print(f"Writing reports and labels to {args.output_path}.")
     labeled_reports[[REPORTS] + CATEGORIES].to_csv(args.output_path,
                                                    index=False)
+
 
 if __name__ == "__main__":
     parser = ArgParser()

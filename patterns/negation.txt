@@ -1,15 +1,3 @@
-# Added Rules
-# ({lemma:/silhouette/} > {dependency:/amod/} {lemma:/mediastinal/}) < {dependency:/nsubj/} {lemma:/unremarkable/}
-# ({lemma:/silhouette/} > {dependency:/amod/} {lemma:/cardiomediastinal/}) < {dependency:/nsubj/} {lemma:/normal/}
-# ({lemma:/silhouette/} > {dependency:/nsubj/} {lemma:/cardiomediastinal/}) > {dependency:/nmod:within/} {lemma:/limit.*/}
-# ({lemma:/silhouette/} > {dependency:/amod/} {lemma:/cardiac/}) < {dependency:/dobj/} {lemma:/obscure/}
-# {lemma:/heart/} < {dependency:/compound/} ({lemma:/size/} > {dependency:/amod/} {lemma:/normal/})
-# {lemma:/heart/} < {dependency:/compound/} ({lemma:/size/} < {dependency:/nsubj/} {lemma:/normal/})
-#{lemma:/cardiopulmonary/} < {dependency:/amod/}  ({lemma:/pathology/} > {dependency:/case/} {lemma:/without/})
-# {} < {dependency:/nsubj/} ({lemma:/limit.*/} > {dependency:/amod/} {lemma:/upper/} & > {dependency:/nmod:of/} {lemma:/normal/} & > {dependency:/case/} {lemma:/within/})
-#{} < {dependency:/nsubj/} ({lemma:/limit.*/} > {dependency:/amod/} {lemma:/upper/} & > {dependency:/nmod:of/} {lemma:/normal/} & > {dependency:/case/} {lemma:/at/})
-#{lemma:/silhouette/} > {dependency:/amod/} {lemma:/normal/}
-
 # No definite XXX
 ({} > {} {lemma:/definite/}) > {dependency:/neg/} {}
 
@@ -71,8 +59,6 @@
 # removal of XXX
 {} <{dependency:/nmod:of/} {lemma:/history|free|disappearance|resolution|drainage|resolution|removal/}
 {} <{dependency:/nmod:for/} {lemma:/negative/}
-#{} <{} {lemma:/resolve|resolving|exclude/}=key
-#{} <{} ([{lemma:/resolve|exclude/} & !{tag:/VBG/}])
 
 # exclude XXX
 {} <{} {lemma:/exclude/}
@@ -114,11 +100,6 @@
 # no focal XXX
 {} <{dependency:/dobj/} ({} >{dependency:/nsubj/} {lemma:/no/})
 
-# do not demonstrate|visualize XXX
-# XXX is not demonstrated/visualized
-# moved to uncertainity
-#{} <{dependency:/dobj|nsubjpass/} ({lemma:/demonstrate|visualize/} >{dependency:/neg/} {})
-
 # XXX is previously demonstrated/visualized
 {} <{dependency:/dobj|nsubjpass/} ({lemma:/demonstrate|visualize/} >{} {lemma:/previously/})
 
@@ -150,8 +131,6 @@
 {} < {} ({lemma:/see/} > {} ({lemma:/evidence/} > {} {lemma:/without/}))
 
 # normal/unremarkable appearance of XXX
-#{lemma:/silhouette/} < {dependency:/nmod:of/} ( {lemma:/appearance/} > {dependency:/amod/} {lemma:/normal/} & < {dependency:/dobj/} {lemma:/demonstrate.*/})
-# Make more general
 {} < {} ({lemma:/appearance/} > {} {lemma:/normal|unremarkable/})
 
 # normal/unremarkable XXX | XXX is/appears normal/unremarkable

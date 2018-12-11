@@ -10,7 +10,8 @@ class Loader(object):
         # Note: assumes reports are newline-separated.
         self.reports_path = reports_path
         self.extract_impression = extract_impression
-        self.punctuation_spacer = str.maketrans({key: f"{key} " for key in ".,"})
+        self.punctuation_spacer = str.maketrans({key: f"{key} "
+                                                 for key in ".,"})
         self.splitter = ssplit.NltkSSplitter(newline=False)
 
         self.load()
@@ -31,7 +32,8 @@ class Loader(object):
             split_document = ssplit.ssplit(document, self.splitter)
 
             assert len(split_document.passages) == 1,\
-                'Each document must have a single passage, the Impression section.'
+                ('Each document must have a single passage, ' +
+                 'the Impression section.')
 
             collection.add_document(split_document)
 

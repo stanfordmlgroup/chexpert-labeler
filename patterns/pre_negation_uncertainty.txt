@@ -1,5 +1,4 @@
-# Reserved for more specific cases of general rules 
-# that need to be looked at first
+# Reserved for uncertainty rules that need to be matched first.
 
 # cannot exclude some XXX
 {} < {} ({lemma:/exclude/} >{} {lemma:/cannot/})

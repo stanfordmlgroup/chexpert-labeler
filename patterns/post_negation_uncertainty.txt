@@ -1,7 +1,6 @@
 # Added Rules
 
 # Stable/unchanged silhouette/cardiomediastinal
-#{lemma:/mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} > {} ({} > {} {lemma:/stable|unchanged/}) // Allows for Stable enlargement of silhouette
 {lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} > {dependency:/amod/} {lemma:/stable|unchanged/}
 {lemma:/cardiomediastinal|pericardial|mediastinal|mediastinum|cardiomediastinum|contour|configuration|silhouette|size|heart|shadow/} > {} ({lemma:/change/} > {dependency:/neg/} {})
 
@@ -51,7 +50,6 @@
 
 # incoming edge
 {} <{dependency:/nmod:of/} {lemma:/question|suggestion/}
-#{} <{dependency:/dobj/} {lemma:/suspect|favor|suggest|suggesting|question|consider/}
 {} <{dependency:/dobj/} {lemma:/suspect|favor|question|consider/}
 {} <{dependency:/nmod:for/} {lemma:/concern|suspicion/}
 {} <{dependency:/nsubjpass/} {lemma:/suspect/}

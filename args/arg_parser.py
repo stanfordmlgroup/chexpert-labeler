@@ -16,7 +16,7 @@ class ArgParser(object):
                                  'TODO: add formatting instructions.')
         parser.add_argument('--extract_impression',
                             action='store_true',
-                            help='Extract the impression section of the' + 
+                            help='Extract the impression section of the' +
                                  'report.')
 
         # Phrases
@@ -26,8 +26,8 @@ class ArgParser(object):
                                  'each observation.')
         parser.add_argument('--unmention_phrases_dir',
                             default='unmention_phrases',
-                            help='Directory containing unmention phrases for ' +
-                                 'each observation.')
+                            help='Directory containing unmention phrases ' +
+                                 'for each observation.')
 
         # Rules
         parser.add_argument('--pre_negation_uncertainty_path',

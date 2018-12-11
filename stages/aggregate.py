@@ -15,13 +15,13 @@ class Aggregator(object):
     def dict_to_vec(self, d):
         """
         Convert a dictionary of the form
-        
+
         {cardiomegaly: [1],
          opacity: [u, 1],
          fracture: [0]}
-        
+
         into a vector of the form
-        
+
         [np.nan, np.nan, 1, u, np.nan, ..., 0, np.nan]
         """
         vec = []
@@ -73,16 +73,19 @@ class Aggregator(object):
                 else:
                     label = 1
 
-                # If at least one non-support category has a -1 (u) or 1 label, there was a finding
+                # If at least one non-support category has a -1 (u) or 1
+                # label, there was a finding
                 if category != SUPPORT_DEVICES and label in [-1, 1]:
                     no_finding = False
-                
+
                 # Don't add any labels for No Finding
                 if category == NO_FINDING:
                     continue
 
                 # add exception for 'chf' and 'heart failure'
-                if (label == 1 or label == -1) and (annotation.text == 'chf' or annotation.text == 'heart failure'):
+                if ((label == 1 or label == -1) and
+                    (annotation.text == 'chf' or
+                     annotation.text == 'heart failure')):
                     if CARDIOMEGALY not in label_dict:
                         label_dict[CARDIOMEGALY] = [-1]
                     else:
@@ -95,9 +98,9 @@ class Aggregator(object):
 
             if no_finding:
                 label_dict[NO_FINDING] = [1]
-            
+
             label_vec = self.dict_to_vec(label_dict)
-            
+
             labels.append(label_vec)
 
         return np.array(labels)

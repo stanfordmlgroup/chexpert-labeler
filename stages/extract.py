@@ -30,7 +30,7 @@ class Extractor(object):
                     observation = phrases_path.stem.replace("_", " ").title()
                     if line:
                         observation2phrases[observation].append(phrase)
-        
+
         return observation2phrases
 
     def add_unmention_phrases(self):
@@ -58,7 +58,6 @@ class Extractor(object):
         self.observation2unmention_phrases[ENLARGED_CARDIOMEDIASTINUM]\
             = enlarged_cardiomediastinum_unmentions
 
-    
     def overlaps_with_unmention(self, sentence, observation, start, end):
         """Return True if a given match overlaps with an unmention phrase."""
         unmention_overlap = False
@@ -70,16 +69,16 @@ class Extractor(object):
                 unmention_start, unmention_end = unmention_match.span(0)
                 if start < unmention_end and end > unmention_start:
                     unmention_overlap = True
-                    break # break early if overlap is found
+                    break  # break early if overlap is found
             if unmention_overlap:
-                break # break early if overlap is found
+                break  # break early if overlap is found
 
         return unmention_overlap
 
     def add_match(self, impression, sentence, ann_index, phrase,
                   observation, start, end):
         """Add the match data and metadata to the impression object
-        in place.""" 
+        in place."""
         annotation = bioc.BioCAnnotation()
         annotation.id = ann_index
         annotation.infons['CUI'] = None
@@ -91,9 +90,8 @@ class Extractor(object):
         annotation.add_location(bioc.BioCLocation(sentence.offset + start,
                                                   length))
         annotation.text = sentence.text[start:start+length]
-        
-        impression.annotations.append(annotation)
 
+        impression.annotations.append(annotation)
 
     def extract(self, collection):
         """Extract the observations in each report.

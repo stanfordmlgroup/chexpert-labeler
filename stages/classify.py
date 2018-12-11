@@ -22,20 +22,24 @@ class ModifiedDetector(neg_detector.Detector):
             = ngrex.load(pre_negation_uncertainty_path)
 
     def detect(self, sentence, locs):
-        """
+        """Detect rules in report sentences.
+
         Args:
             sentence(BioCSentence): a sentence with universal dependencies
             locs(list): a list of (begin, end)
-        Yields:
-            (str, MatcherObj, (begin, end)): negation or uncertainty, matcher, matched annotation
+
+        Return:
+            (str, MatcherObj, (begin, end)): negation or uncertainty,
+            matcher, matched annotation
         """
         logger = logging.getLogger(__name__)
 
         try:
             g = semgraph.load(sentence)
             propagator.propagate(g)
-        except:
-            logger.exception(f'Cannot parse dependency graph [offset={sentence.offset}]')
+        except Exception:
+            logger.exception('Cannot parse dependency graph ' +
+                             f'[offset={sentence.offset}]')
             raise
         else:
             for loc in locs:
@@ -69,6 +73,7 @@ class ModifiedDetector(neg_detector.Detector):
                 if n0 == node:
                     return m
 
+
 class Classifier(object):
     """Classify mentions of observations from radiology reports."""
     def __init__(self, pre_negation_uncertainty_path, negation_path,
@@ -99,4 +104,3 @@ class Classifier(object):
             negdetect.detect(document, self.detector)
             # To reduce memory consumption, remove sentences text.
             del document.passages[0].sentences[:]
-            
