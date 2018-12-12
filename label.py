@@ -18,6 +18,7 @@ def write(reports, labels, output_path, verbose=False):
     labeled_reports[[REPORTS] + CATEGORIES].to_csv(output_path,
                                                    index=False)
 
+
 def label(args):
     """Label the provided report(s)."""
 

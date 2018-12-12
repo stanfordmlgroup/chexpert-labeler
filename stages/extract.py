@@ -19,7 +19,6 @@ class Extractor(object):
             = self.load_phrases(unmention_phrases_dir, "unmention")
         self.add_unmention_phrases()
 
-
     def load_phrases(self, phrases_dir, phrases_type):
         """Read in map from observations to phrases for matching."""
         observation2phrases = defaultdict(list)
