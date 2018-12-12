@@ -20,11 +20,11 @@ class ArgParser(object):
 
         # Phrases
         parser.add_argument('--mention_phrases_dir',
-                            default='mention_phrases',
+                            default='phrases/mention',
                             help='Directory containing mention phrases for ' +
                                  'each observation.')
         parser.add_argument('--unmention_phrases_dir',
-                            default='unmention_phrases',
+                            default='phrases/unmention',
                             help='Directory containing unmention phrases ' +
                                  'for each observation.')
 

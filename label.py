@@ -7,6 +7,17 @@ from stages import Extractor, Classifier, Aggregator
 from constants import *
 
 
+def write(reports, labels, output_path, verbose=False):
+    """Write labeled reports to specified path."""
+    labeled_reports = pd.DataFrame({REPORTS: reports})
+    for index, category in enumerate(CATEGORIES):
+        labeled_reports[category] = labels[:, index]
+
+    if verbose:
+        print(f"Writing reports and labels to {output_path}.")
+    labeled_reports[[REPORTS] + CATEGORIES].to_csv(output_path,
+                                                   index=False)
+
 def label(args):
     """Label the provided report(s)."""
 
@@ -30,14 +41,7 @@ def label(args):
     # Aggregate mentions to obtain one set of labels for each report.
     labels = aggregator.aggregate(loader.collection)
 
-    labeled_reports = pd.DataFrame({REPORTS: loader.reports})
-    for index, category in enumerate(CATEGORIES):
-        labeled_reports[category] = labels[:, index]
-
-    if args.verbose:
-        print(f"Writing reports and labels to {args.output_path}.")
-    labeled_reports[[REPORTS] + CATEGORIES].to_csv(args.output_path,
-                                                   index=False)
+    write(loader.reports, labels, args.output_path, args.verbose)
 
 
 if __name__ == "__main__":

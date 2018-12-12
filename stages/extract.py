@@ -12,15 +12,15 @@ class Extractor(object):
     """Extract observations from impression sections of reports."""
     def __init__(self, mention_phrases_dir, unmention_phrases_dir,
                  verbose=False):
+        self.verbose = verbose
         self.observation2mention_phrases\
-            = self.load_phrases(mention_phrases_dir)
+            = self.load_phrases(mention_phrases_dir, "mention")
         self.observation2unmention_phrases\
-            = self.load_phrases(unmention_phrases_dir)
+            = self.load_phrases(unmention_phrases_dir, "unmention")
         self.add_unmention_phrases()
 
-        self.verbose = verbose
 
-    def load_phrases(self, phrases_dir):
+    def load_phrases(self, phrases_dir, phrases_type):
         """Read in map from observations to phrases for matching."""
         observation2phrases = defaultdict(list)
         for phrases_path in phrases_dir.glob("*.txt"):
@@ -30,6 +30,10 @@ class Extractor(object):
                     observation = phrases_path.stem.replace("_", " ").title()
                     if line:
                         observation2phrases[observation].append(phrase)
+
+        if self.verbose:
+            print(f"Loading {phrases_type} phrases for "
+                  f"{len(observation2phrases)} observations.")
 
         return observation2phrases
 
