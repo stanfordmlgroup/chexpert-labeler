@@ -30,7 +30,7 @@ class Loader(object):
             document = text2bioc.text2document(str(i), clean_report,
                                                split_document=self.extract_impression)
             if self.extract_impression:
-                document = self.extract_impression_from_passages(document)
+                self.extract_impression_from_passages(document)
 
             split_document = ssplit.ssplit(document, self.splitter)
 
@@ -43,13 +43,17 @@ class Loader(object):
         self.reports = reports
         self.collection = collection
 
-    def extract_impression_from_passages(self, reports):
-        """Extract the Impression section from reports."""
-        print("Warning: not actually extracting impression.")
-        for report in reports:
-            pass
+    def extract_impression_from_passages(self, document):
+        """Extract the Impression section from a Bioc Document."""
+        document.passages = [passage for passage in document.passages
+                             if passage.infons['title'] == "impression"]
 
-        return reports
+        assert len(document.passages) <= 1,\
+            (f"The document contains {len(document.passages)} impression " +
+             "passages.")
+
+        assert len(document.passages) >= 1,\
+            "The document contains no explicit impression passage."
 
     def clean(self, report):
         """Clean the report text."""

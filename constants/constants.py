@@ -15,6 +15,11 @@ CATEGORIES = ["No Finding", "Enlarged Cardiomediastinum", "Cardiomegaly",
               "Pneumonia", "Atelectasis", "Pneumothorax", "Pleural Effusion",
               "Pleural Other", "Fracture", "Support Devices"]
 
+# Numeric constants
+POSITIVE = 1
+NEGATIVE = 0
+UNCERTAIN = -1
+
 # Misc. constants
 UNCERTAINTY = "uncertainty"
 NEGATION = "negation"

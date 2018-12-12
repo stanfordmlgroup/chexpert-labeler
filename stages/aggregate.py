@@ -34,15 +34,15 @@ class Aggregator(object):
                     vec.append(label_list[0])
                 # Multiple labels.
                 else:
-                    # Case 1. There is 0 and u.
-                    if 0 in label_list and -1 in label_list:
-                        vec.append(-1)
-                    # Case 2. There is 0 and 1.
-                    elif 0 in label_list and 1 in label_list:
-                        vec.append(1)
-                    # Case 3. There is u and 1.
-                    elif -1 in label_list and 1 in label_list:
-                        vec.append(1)
+                    # Case 1. There is negated and uncertain.
+                    if NEGATIVE in label_list and UNCERTAIN in label_list:
+                        vec.append(UNCERTAIN)
+                    # Case 2. There is negated and positive.
+                    elif NEGATIVE in label_list and POSITIVE in label_list:
+                        vec.append(POSITIVE)
+                    # Case 3. There is uncertain and positive.
+                    elif UNCERTAIN in label_list and POSITIVE in label_list:
+                        vec.append(POSITIVE)
                     # Case 4. All labels are the same.
                     else:
                         vec.append(label_list[0])
@@ -67,15 +67,16 @@ class Aggregator(object):
                 category = annotation.infons[OBSERVATION]
 
                 if NEGATION in annotation.infons:
-                    label = 0
+                    label = NEGATIVE
                 elif UNCERTAINTY in annotation.infons:
-                    label = -1
+                    label = UNCERTAIN
                 else:
-                    label = 1
+                    label = POSITIVE
 
-                # If at least one non-support category has a -1 (u) or 1
-                # label, there was a finding
-                if category != SUPPORT_DEVICES and label in [-1, 1]:
+                # If at least one non-support category has a uncertain or
+                # positive label, there was a finding
+                if (category != SUPPORT_DEVICES and
+                    label in [UNCERTAIN, POSITIVE]):
                     no_finding = False
 
                 # Don't add any labels for No Finding
@@ -83,13 +84,13 @@ class Aggregator(object):
                     continue
 
                 # add exception for 'chf' and 'heart failure'
-                if ((label == 1 or label == -1) and
+                if ((label in [UNCERTAIN, POSITIVE]) and
                     (annotation.text == 'chf' or
                      annotation.text == 'heart failure')):
                     if CARDIOMEGALY not in label_dict:
-                        label_dict[CARDIOMEGALY] = [-1]
+                        label_dict[CARDIOMEGALY] = [UNCERTAIN]
                     else:
-                        label_dict[CARDIOMEGALY].append(-1)
+                        label_dict[CARDIOMEGALY].append(UNCERTAIN)
 
                 if category not in label_dict:
                     label_dict[category] = [label]
@@ -97,7 +98,7 @@ class Aggregator(object):
                     label_dict[category].append(label)
 
             if no_finding:
-                label_dict[NO_FINDING] = [1]
+                label_dict[NO_FINDING] = [POSITIVE]
 
             label_vec = self.dict_to_vec(label_dict)
 
