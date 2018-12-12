@@ -26,9 +26,11 @@ CheXpert NLP tool to extract observations from radiology reports.
 ```
 
 ## Usage
-Place reports in a headerless, single column csv `{reports_path}`. Each report must be contained in quotes if (1) it contains a comma or (2) it spans multiple lines. See [sample_reports.csv](https://raw.githubusercontent.com/stanfordmlgroup/chexpert-labeler/cleanup-and-port/sample_reports.csv?token=AG0zZhDd8WNzT1f85KtdyvJmoirEizdkks5cGravwA%3D%3D) for an example. 
+Place reports in a headerless, single column csv `{reports_path}`. Each report must be contained in quotes if (1) it contains a comma or (2) it spans multiple lines. See [sample_reports.csv](https://raw.githubusercontent.com/stanfordmlgroup/chexpert-labeler/master/sample_reports.csv?token=AG0zZp8rZhV4o7llgkL6lhGzEt8CoSQbks5cGsIBwA%3D%3D) for an example. 
 
 `python label.py --reports_path {reports_path}`
+
+Run `python label.py --help` for descriptions of all of the command-line arguments.
 
 ## Contributions
 This repository builds upon the work of [NegBio](https://negbio.readthedocs.io/en/latest/).
