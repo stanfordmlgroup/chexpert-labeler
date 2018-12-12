@@ -14,7 +14,16 @@ Make the virtual environment:
 
 `conda env create -f environment.yml`
 
-Install the [Bllip Parser](https://pypi.org/project/bllipparser/) and download the `GENIA+PubMed` model.
+Install NLTK data:
+
+`python -m nltk.downloader universal_tagset punkt wordnet`
+
+Download the `GENIA+PubMed` parsing model:
+
+```python
+>>> from bllipparser import RerankingParser
+>>> RerankingParser.fetch_and_load('GENIA+PubMed')
+```
 
 ## Usage
 Place reports in a single column csv `{reports_path}` where each row consists of a single report contained in quotes.
