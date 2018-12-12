@@ -14,7 +14,7 @@ Make the virtual environment:
 
 `conda env create -f environment.yml`
 
-Download the Bllip Parser. TODO
+Install the [Bllip Parser](https://pypi.org/project/bllipparser/) and download the `GENIA+PubMed` model.
 
 ## Usage
 Place reports in a single column csv `{reports_path}` where each row consists of a single report contained in quotes.
@@ -30,13 +30,3 @@ This tool was developed by Jeremy Irvin, Pranav Rajpurkar, Michael Ko, Yifan Yu,
 If you're using the CheXpert labeling tool, please cite:
 
 INSERT CITATIONS
-
-## Disclaimer
-Do we need this?
-
-## Group and project webpage
-[Stanford Machine Learning Group](https://stanfordmlgroup.github.io)
-
-[CheXpert Project](http://stanfordmlgroup.github.io/projects/chexpert)
-
-[Stanford AIMI Center](https://aimi.stanford.edu/)
