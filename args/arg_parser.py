@@ -15,7 +15,7 @@ class ArgParser(object):
                             help='Path to file with radiology reports.')
         parser.add_argument('--extract_impression',
                             action='store_true',
-                            help='Extract the impression section of the' +
+                            help='Extract the impression section of the ' +
                                  'report.')
 
         # Phrases
@@ -47,7 +47,7 @@ class ArgParser(object):
         # Misc.
         parser.add_argument('-v', '--verbose',
                             action='store_true',
-                            help='Print progress bars.')
+                            help='Print progress to stdout.')
 
         self.parser = parser
 
