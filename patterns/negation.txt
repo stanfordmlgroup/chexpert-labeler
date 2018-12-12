@@ -1,0 +1,156 @@
+# No definite XXX
+({} > {} {lemma:/definite/}) > {dependency:/neg/} {}
+
+# No obvious XXX
+({} > {} {lemma:/obvious/}) > {dependency:/neg/} {}
+
+
+{} > {dependency:/amod|nsubj/} {lemma:/normal|unremarkable/}
+{} < {dependency:/amod|nsubj/} {lemma:/normal|unremarkable/}
+({} > {} {}) < {dependency:/nsubj|dobj/} {lemma:/unremarkable|normal/}
+{} < {} ({} > {dependency:/amod/} {lemma:/normal|unremarkable/})
+{} < {} ({} < {dependency:/nsubj/} {lemma:/normal|unremarkable/})
+{} < {dependency:/conj:no/} {}
+{} < {} ({} < {dependency:/conj:or/} ({} > {} {lemma:/no/}))
+{} < {dependency:/nsubj/} ({lemma:/limit.*/} > {} {lemma:/upper/} & > {dependency:/nmod:of/} {lemma:/normal/} & > {dependency:/case/} {lemma:/at|within/})
+{} < {} ({dependency:/exclude/} < {} ({} > {} {lemma:/no/}))
+
+
+({lemma:/silhouette/} > {} {}) < {dependency:/dobj|nsubj/} {lemma:/obscure/}
+
+({} > {dependency:/amod/} {lemma:/normal|unremarkable/}) < {dependency:/dobj|nsubj/} {lemma:/demonstrate.*|show|present|display/}
+{} < {dependency:/nmod:of/} ( {lemma:/appearance/} > {dependency:/amod/} {lemma:/normal/} & < {dependency:/dobj/} {lemma:/demonstrate.*|show|present|display/})
+
+{} < {dependency:/amod/} ({} < {dependency:/dep|nsubj/} {lemma:/normal|unremarkable/})
+{} < {dependency:/amod/} ({} > {dependency:/neg/} {lemma:/no/})
+{} < {dependency:/amod/}({lemma:/finding.*/} < {dependency:/dobj/} ({lemma:/acute/} > {dependency:/nsubj/} {lemma:/no/}))
+{} < {dependency:/amod/} ({lemma:/structure.*/} < {dependency:/dep|nsubj/} ({lemma:/appear/} > {dependency:/xcomp/} {lemma:/normal|unremarkable/}))
+
+{} < {dependency:/compound/} ({} > {dependency:/neg/} {})
+{} < {dependency:/nsubj/} {lemma:/absent/}
+{} < {dependency:/amod/} ({} < {dependency:/nmod:of/} ({lemma:/evidence/} > {dependency:/case/} {lemma:/without/}))
+{} < {dependency:/amod/} ({} < {dependency:/nmod:of/} ({lemma:/evidence/} > {dependency:/neg/} {}))
+
+# XXX within normal limits
+{} < {} ({} < {} ({lemma:/show|demonstrate|present/} > {dependency:/nmod:within/} ({lemma:/limit.*/} > {} {lemma:/normal/})))
+({} > {} {}) > {dependency:/nmod:within/} {lemma:/limit.*/}
+{} < {dependency:/nsubj/} ({lemma:/limit.*/} > {} {lemma:/upper/} & > {dependency:/nmod:of/} {lemma:/normal/} & > {dependency:/case/} {lemma:/at|within/})
+{} < {} ({} < {dependency:/nsubj/} ({lemma:/limit.*/} > {} {lemma:/upper/} & > {dependency:/nmod:of/} {lemma:/normal/} & > {dependency:/case/} {lemma:/at|within/}))
+{} < {} ({} < {dependency:/nsubj/} ({lemma:/limit.*/} > {dependency:/amod/} {lemma:/normal/} & > {dependency:/case/} {lemma:/at|within/}))
+({lemma:/vascularity/} > {dependency:/amod/} {lemma:/pulmonary/}) > {dependency:/amod/} {lemma:/normal/}
+{} < {dependency:/dobj|nsubj/} ({} > {dependency:/nmod:within/} ({lemma:/limit.*/} > {} {lemma:/normal/}))
+{} > {dependency:/nmod:within/} ({lemma:/limit.*/} > {dependency:/amod/} {lemma:/normal/})
+{} > {} ({lemma:/limit/} > {} {lemma:/normal/})
+
+# XXX is/appears/are/appear/remain/remains (now, otherwise) normal/unremarkable
+{} < {} ({lemma:/appear|remain/} > {} {lemma:/normal|unremarkable/})
+
+# XXX is/appears/are/appear/remain/remains (now, otherwise) within normal limits
+{} > {} ({lemma:/remain|appear/} > {} ({lemma:/limit/} > {} {lemma:/normal/}))
+
+
+# rather than XXX
+{} <{dependency:/conj:negcc/} {}
+{} <{dependency:/nmod:without/} {}
+
+{} <{dependency:/nmod:without|nmod:of/} {lemma:/clear|clearing/}=key
+{} <{dependency:/nmod:out/} {lemma:/rule/}=key
+
+# removal of XXX
+{} <{dependency:/nmod:of/} {lemma:/history|free|disappearance|resolution|drainage|resolution|removal/}
+{} <{dependency:/nmod:for/} {lemma:/negative/}
+
+# exclude XXX
+{} <{} {lemma:/exclude/}
+
+{} <{dependency:/advmod|dep|conj:or/} {lemma:/no/}
+
+# XXX has resolved
+{} <{dependency:/nsubj/} ({lemma:/resolve/}=key >{dependency:/aux/} {})
+
+# there is no XXX
+{} <{dependency:/nsubj/} ({lemma:/be/} >{} {lemma:/no/})
+
+# without evidence|finding of|for XXX
+{} <{dependency:/nmod:of|nmod:for/} ({lemma:/evidence|finding/} <{dependency:/nmod:without/} {})
+
+# without development of XXX
+{} < {dependency:/nmod:of/} ({lemma:/development/} > {} {lemma:/without/})
+
+# No development of XXX
+{} < {dependency:/nmod:of/} ({lemma:/development/} > {} {lemma:/no/})
+
+# no evidence of|for XXX
+{} <{dependency:/nmod:of|nmod:for/} ({lemma:/evidence/} >{dependency:/neg/} {})
+
+# without evidence|finding of|for XXX
+{} <{dependency:/nmod:of|nmod:for/} ({lemma:/evidence|finding/} >{} {lemma:/without/})
+
+# no focus of XXX
+{} <{dependency:/nmod:of/} ({lemma:/focus/} >{dependency:/neg/} {})
+{} <{dependency:/nmod:of/} ({lemma:/focus/} >{} {lemma:/no/})
+
+# no moderate to XXX
+{} <{dependency:/nmod:to/} ({lemma:/moderate/} >{dependency:/neg/} {})
+
+# no evidence of developing XXX
+{} <{} ({lemma:/developing/} <{} ({lemma:/evidence/} <{dependency:/nmod:without/} {}))
+{} <{} ({lemma:/developing/} <{} ({lemma:/evidence/} >{} {lemma:/no/}))
+
+# no focal XXX
+{} <{dependency:/dobj/} ({} >{dependency:/nsubj/} {lemma:/no/})
+
+# XXX is previously demonstrated/visualized
+{} <{dependency:/dobj|nsubjpass/} ({lemma:/demonstrate|visualize/} >{} {lemma:/previously/})
+
+# there is no NN to suggest/explain XXX
+{} < {} ({lemma:/suggest|explain|diagnose/} < {} ({tag:/V.*/} > {} ({tag:/N.*/} > {} {lemma:/no/})))
+
+# no NN to suggest/explain XXX 
+{} < {} ({lemma:/suggest|explain|diagnose/} < {} ({tag:/N.*/} > {} {lemma:/no/}))
+
+# no area of XXX
+{} < {dependency:/nmod:of/} ({lemma:/area/} > {dependency:/compound/} {lemma:/no/})
+
+# XXX is not enlarged
+{} < {dependency:/nsubjpass/} ({lemma:/enlarge/} > {dependency:/neg/} {})
+
+# without development of XXX
+{} < {dependency:/nmod:of/} ({lemma:/development/} > {dependency:/case/} {lemma:/without/}) 
+
+# XXX removed
+{} < {} {lemma:/remove/}
+{} > {} {lemma:/remove/}
+
+# XXX is no longer seen
+{} < {dependency:/nsubjpass/} ({lemma:/see/} > {} ({} > {dependency:/neg/} {lemma:/no/}))
+{} < {dependency:/nsubjpass/} ({lemma:/see/} > {} {lemma:/no/})
+
+# without evidence seen for XXX
+{} < {} ({lemma:/see/} > {} ({} > {} ({lemma:/evidence/} > {} {lemma:/without/})))
+{} < {} ({lemma:/see/} > {} ({lemma:/evidence/} > {} {lemma:/without/}))
+
+# normal/unremarkable appearance of XXX
+{} < {} ({lemma:/appearance/} > {} {lemma:/normal|unremarkable/})
+
+# normal/unremarkable XXX | XXX is/appears normal/unremarkable
+# make more general
+{} > {} {lemma:/normal|unremarkable/}
+{} < {} {lemma:/normal|unremarkable/}
+
+# XXX has/have cleared
+# cleared XXX
+{} < {} {lemma:/clear/}
+{} > {} {lemma:/clear/}
+
+# no obvious associated XXX
+{} < {} ({lemma:/associate.*/} > {} ({lemma:/obvious/} > {dependency:/neg/} {}))
+{} > {dependency:/neg/} {} & > {} {lemma:/obvious/} & > {} {lemma:/associate.*/} 
+
+# XXX with interval resolution
+{} > {} ({lemma:/resolution/} > {} {lemma:/interval/})
+
+# no XXX / general negative case
+{} >{dependency:/neg/} {}
+{} >{} {lemma:/no/}
+{} >{dependency:/case/} {lemma:/without/}

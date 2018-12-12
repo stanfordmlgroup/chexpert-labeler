@@ -1,0 +1,23 @@
+# Reserved for uncertainty rules that need to be matched first.
+
+# cannot exclude some XXX
+{} < {} ({lemma:/exclude/} >{} {lemma:/cannot/})
+
+# XXX is not excluded
+{} < {} ({lemma:/exclude/} > {dependency:/neg/} {})
+
+# no new XXX
+{} > {} {lemma:/new/} & > {dependency:/neg/} {lemma:/no/}
+{} < {} ({lemma:/new/} > {} {lemma:/no/})
+{} < {dependency:/compound/} ({} > {} {lemma:/new/} & > {} {lemma:/no/})
+
+# no new area of XXX
+{} < {} ({lemma:/area/} > {} {lemma:/no/} > {} {lemma:/new/})
+{} > {} ({lemma:/area/} > {} {lemma:/no/} > {} {lemma:/new/})
+
+# cannot rule out XXX
+{} <{dependency:/nmod:out/} ({lemma:/rule/} > {} {lemma:/cannot/})
+
+# no evidence to rule out XXX
+
+{} < {dependency:/nmod:out/} ({lemma:/rule/} < {} ({lemma:/evidence/} > {} {lemma:/no/}))
