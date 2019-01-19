@@ -16,8 +16,6 @@ class Loader(object):
                                                  for key in ".,"})
         self.splitter = ssplit.NltkSSplitter(newline=False)
 
-        self.load()
-
     def load(self):
         """Load and clean the reports."""
         collection = bioc.BioCCollection()
