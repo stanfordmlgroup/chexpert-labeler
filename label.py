@@ -35,6 +35,8 @@ def label(args):
     aggregator = Aggregator(CATEGORIES,
                             verbose=args.verbose)
 
+    # Load reports in place.
+    loader.load()
     # Extract observation mentions in place.
     extractor.extract(loader.collection)
     # Classify mentions in place.
