@@ -40,4 +40,13 @@ This tool was developed by Jeremy Irvin, Pranav Rajpurkar, Michael Ko, Yifan Yu,
 ## Citing
 If you're using the CheXpert labeling tool, please cite:
 
-INSERT CITATIONS
+Irvin, Jeremy, et al. "CheXpert: A large chest radiograph dataset with uncertainty labels and expert comparison." Thirty-Third AAAI Conference on Artificial Intelligence. 2019.
+
+```
+@inproceedings{irvin2019chexpert,
+  title={CheXpert: A large chest radiograph dataset with uncertainty labels and expert comparison},
+  author={Irvin, Jeremy and Rajpurkar, Pranav and Ko, Michael and Yu, Yifan and Ciurea-Ilcus, Silviana and Chute, Chris and Marklund, Henrik and Haghgoo, Behzad and Ball, Robyn and Shpanskaya, Katie and others},
+  booktitle={Thirty-Third AAAI Conference on Artificial Intelligence},
+  year={2019}
+}
+```
