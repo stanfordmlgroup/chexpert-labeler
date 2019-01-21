@@ -22,7 +22,6 @@ def write(reports, labels, output_path, verbose=False):
 def label(args):
     """Label the provided report(s)."""
 
-    # Load the reports
     loader = Loader(args.reports_path, args.extract_impression)
 
     extractor = Extractor(args.mention_phrases_dir,
