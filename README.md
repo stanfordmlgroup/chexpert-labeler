@@ -38,7 +38,7 @@ This repository builds upon the work of [NegBio](https://negbio.readthedocs.io/e
 This tool was developed by Jeremy Irvin, Pranav Rajpurkar, Michael Ko, Yifan Yu, and Silviana Ciurea-Ilcus.
 
 ## Citing
-If you're using the CheXpert labeling tool, please cite:
+If you're using the CheXpert labeling tool, please cite [this paper](https://arxiv.org/abs/1901.07031):
 
 ```
 @inproceedings{irvin2019chexpert,
