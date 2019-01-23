@@ -1,5 +1,7 @@
 # chexpert-labeler
-CheXpert NLP tool to extract observations from radiology reports.
+CheXpert NLP tool to extract observations from radiology reports. 
+
+Read more about our project [here](https://stanfordmlgroup.github.io/competitions/chexpert/) and our AAAI 2019 paper [here](https://arxiv.org/abs/1901.07031).
 
 ## Prerequisites
 1. Clone the [NegBio repository](https://github.com/ncbi-nlp/NegBio):
