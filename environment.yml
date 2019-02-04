@@ -39,6 +39,7 @@ dependencies:
   - wheel=0.32.3
   - xz=5.2.4
   - zlib=1.2.11
+  - jpype1=0.6.3
   - pip:
     - bioc==1.1.dev3
     - bllipparser==2016.9.11
