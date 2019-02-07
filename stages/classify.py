@@ -78,8 +78,8 @@ class Classifier(object):
     """Classify mentions of observations from radiology reports."""
     def __init__(self, pre_negation_uncertainty_path, negation_path,
                  post_negation_uncertainty_path, verbose=False):
-        self.parser = parse.Bllip(model_dir=PARSING_MODEL_DIR)
-        self.ptb2dep = ptb2ud.Ptb2DepConverter(universal=True)
+        self.parser = parse.NegBioParser(model_dir=PARSING_MODEL_DIR)
+        self.ptb2dep = ptb2ud.NegBioPtb2DepConverter(universal=True)
         self.lemmatizer = ptb2ud.Lemmatizer()
 
         self.verbose = verbose
@@ -97,9 +97,9 @@ class Classifier(object):
             documents = tqdm(documents)
         for document in documents:
             # Parse the impression text in place.
-            parse.parse(document, self.parser)
+            self.parser.parse_doc(document)
             # Add the universal dependency graph in place.
-            ptb2ud.convert(document, self.ptb2dep, self.lemmatizer)
+            self.ptb2dep.convert_doc(document)
             # Detect the negation and uncertainty rules in place.
             negdetect.detect(document, self.detector)
             # To reduce memory consumption, remove sentences text.

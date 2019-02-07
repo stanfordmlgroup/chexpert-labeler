@@ -2,7 +2,7 @@
 import re
 import bioc
 import pandas as pd
-from negbio.pipeline import text2bioc, ssplit
+from negbio.pipeline import text2bioc, ssplit, section_split
 
 from constants import *
 
@@ -14,7 +14,7 @@ class Loader(object):
         self.extract_impression = extract_impression
         self.punctuation_spacer = str.maketrans({key: f"{key} "
                                                  for key in ".,"})
-        self.splitter = ssplit.NltkSSplitter(newline=False)
+        self.splitter = ssplit.NegBioSSplitter(newline=False)
 
     def load(self):
         """Load and clean the reports."""
@@ -25,12 +25,12 @@ class Loader(object):
 
         for i, report in enumerate(reports):
             clean_report = self.clean(report)
-            document = text2bioc.text2document(str(i), clean_report,
-                                               split_document=self.extract_impression)
+            document = text2bioc.text2document(str(i), clean_report)
             if self.extract_impression:
+                document = section_split.split_document(document)
                 self.extract_impression_from_passages(document)
 
-            split_document = ssplit.ssplit(document, self.splitter)
+            split_document = self.splitter.split_doc(document)
 
             assert len(split_document.passages) == 1,\
                 ('Each document must have a single passage, ' +
