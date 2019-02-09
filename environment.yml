@@ -8,6 +8,7 @@ dependencies:
   - decorator=4.3.0
   - docopt=0.6.2
   - intel-openmp=2019.1
+  - jpype1=0.6.3
   - libgfortran-ng=7.3.0
   - mkl=2019.1
   - mkl_fft=1.0.6
