@@ -26,10 +26,11 @@ class Loader(object):
         for i, report in enumerate(reports):
             clean_report = self.clean(report)
             document = text2bioc.text2document(str(i), clean_report)
+
             if self.extract_impression:
                 document = section_split.split_document(document)
                 self.extract_impression_from_passages(document)
-
+            
             split_document = self.splitter.split_doc(document)
 
             assert len(split_document.passages) == 1,\
@@ -43,15 +44,23 @@ class Loader(object):
 
     def extract_impression_from_passages(self, document):
         """Extract the Impression section from a Bioc Document."""
-        document.passages = [passage for passage in document.passages
-                             if passage.infons['title'] == "impression"]
+        impression_passages = []
+        for i, passage in enumerate(document.passages):
+            if 'title' in passage.infons:
+                if passage.infons['title'] == 'impression':
+                    next_passage = document.passages[i+1]
+                    assert 'title' not in next_passage.infons,\
+                        "Document contains empty impression section."
+                    impression_passages.append(next_passage)
 
-        assert len(document.passages) <= 1,\
+        assert len(impression_passages) <= 1,\
             (f"The document contains {len(document.passages)} impression " +
              "passages.")
 
-        assert len(document.passages) >= 1,\
+        assert len(impression_passages) >= 1,\
             "The document contains no explicit impression passage."
+
+        document.passages = impression_passages
 
     def clean(self, report):
         """Clean the report text."""
