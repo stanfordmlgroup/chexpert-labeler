@@ -79,8 +79,8 @@ class Classifier(object):
     def __init__(self, pre_negation_uncertainty_path, negation_path,
                  post_negation_uncertainty_path, verbose=False):
         self.parser = parse.NegBioParser(model_dir=PARSING_MODEL_DIR)
-        self.ptb2dep = ptb2ud.NegBioPtb2DepConverter(universal=True)
         self.lemmatizer = ptb2ud.Lemmatizer()
+        self.ptb2dep = ptb2ud.NegBioPtb2DepConverter(self.lemmatizer, universal=True)
 
         self.verbose = verbose
 
