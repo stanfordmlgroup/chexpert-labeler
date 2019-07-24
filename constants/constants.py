@@ -11,7 +11,7 @@ SUPPORT_DEVICES = "Support Devices"
 NO_FINDING = "No Finding"
 OBSERVATION = "observation"
 CATEGORIES = ["No Finding", "Enlarged Cardiomediastinum", "Cardiomegaly",
-              "Lung Lesion", "Airspace Opacity", "Edema", "Consolidation",
+              "Lung Lesion", "Lung Opacity", "Edema", "Consolidation",
               "Pneumonia", "Atelectasis", "Pneumothorax", "Pleural Effusion",
               "Pleural Other", "Fracture", "Support Devices"]
 
