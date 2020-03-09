@@ -6,7 +6,7 @@ Read more about our project [here](https://stanfordmlgroup.github.io/competition
 ## Prerequisites
 1. Clone the [NegBio repository](https://github.com/ncbi-nlp/NegBio):
     
-    `git clone git@github.com:ncbi-nlp/NegBio.git`
+    `git clone https://github.com/ncbi-nlp/NegBio.git`
 
 2. Add the NegBio directory to your `PYTHONPATH`:
     
