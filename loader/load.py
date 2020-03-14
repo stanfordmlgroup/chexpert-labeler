@@ -30,7 +30,7 @@ class Loader(object):
             if self.extract_impression:
                 document = section_split.split_document(document)
                 self.extract_impression_from_passages(document)
-            
+
             split_document = self.splitter.split_doc(document)
 
             assert len(split_document.passages) == 1,\
