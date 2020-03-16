@@ -1,24 +1,32 @@
 # chexpert-labeler
-CheXpert NLP tool to extract observations from radiology reports. 
+CheXpert NLP tool to extract observations from radiology reports.
 
 Read more about our project [here](https://stanfordmlgroup.github.io/competitions/chexpert/) and our AAAI 2019 paper [here](https://arxiv.org/abs/1901.07031).
 
 ## Prerequisites
 1. Clone the [NegBio repository](https://github.com/ncbi-nlp/NegBio):
-    
-    `git clone https://github.com/ncbi-nlp/NegBio.git`
+
+```Shell
+git clone https://github.com/ncbi-nlp/NegBio.git
+```
 
 2. Add the NegBio directory to your `PYTHONPATH`:
-    
-    `export PYTHONPATH={path to negbio directory}:$PYTHONPATH`
+
+```Shell
+export PYTHONPATH={path to negbio directory}:$PYTHONPATH
+```
 
 3. Make the virtual environment:
-    
-    `conda env create -f environment.yml`
+
+```Shell
+conda env create -f environment.yml
+```
 
 4. Install NLTK data:
-    
-    `python -m nltk.downloader universal_tagset punkt wordnet`
+
+```Shell
+python -m nltk.downloader universal_tagset punkt wordnet
+```
 
 5. Download the `GENIA+PubMed` parsing model:
 
@@ -28,9 +36,11 @@ Read more about our project [here](https://stanfordmlgroup.github.io/competition
 ```
 
 ## Usage
-Place reports in a headerless, single column csv `{reports_path}`. Each report must be contained in quotes if (1) it contains a comma or (2) it spans multiple lines. See [sample_reports.csv](https://raw.githubusercontent.com/stanfordmlgroup/chexpert-labeler/master/sample_reports.csv) (with output [labeled_reports.csv](https://raw.githubusercontent.com/stanfordmlgroup/chexpert-labeler/master/labeled_reports.csv))for an example. 
+Place reports in a headerless, single column csv `{reports_path}`. Each report must be contained in quotes if (1) it contains a comma or (2) it spans multiple lines. See [sample_reports.csv](https://raw.githubusercontent.com/stanfordmlgroup/chexpert-labeler/master/sample_reports.csv) (with output [labeled_reports.csv](https://raw.githubusercontent.com/stanfordmlgroup/chexpert-labeler/master/labeled_reports.csv))for an example.
 
-`python label.py --reports_path {reports_path}`
+```Shell
+python label.py --reports_path {reports_path}
+```
 
 Run `python label.py --help` for descriptions of all of the command-line arguments.
 
