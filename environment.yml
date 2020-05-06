@@ -9,6 +9,8 @@ dependencies:
   - certifi=2019.11.28=py36_0
   - decorator=4.3.0=py_0
   - docopt=0.6.2=py_1
+  - gcc_linux-64=7.3.0=h553295d_9
+  - gxx_linux-64=7.3.0=h553295d_9
   - intel-openmp=2019.1=144
   - jpype1=0.6.3=py36h9de70de_1001
   - libblas=3.8.0=14_mkl
