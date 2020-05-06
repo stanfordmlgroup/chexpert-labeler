@@ -27,7 +27,7 @@ dependencies:
   - nltk=3.3.0=py36_0
   - numpy=1.15.4=py36h8b7e671_1002
   - numpy-base=1.15.4=py36hde5b4d6_0
-  - openssl=1.1.1=h7b6447c_0
+  - openssl=1.1.1f=h7b6447c_0
   - pandas=0.23.4=py36h637b7d7_1000
   - pathlib2=2.3.5=py36_0
   - pip=18.1=py36_1000
