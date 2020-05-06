@@ -22,13 +22,19 @@ export PYTHONPATH={path to negbio directory}:$PYTHONPATH
 conda env create -f environment.yml
 ```
 
-4. Install NLTK data:
+4. Activate the virtual environment:
+
+```Shell
+conda activate chexpert-label
+```
+
+5. Install NLTK data:
 
 ```Shell
 python -m nltk.downloader universal_tagset punkt wordnet
 ```
 
-5. Download the `GENIA+PubMed` parsing model:
+6. Download the `GENIA+PubMed` parsing model:
 
 ```python
 >>> from bllipparser import RerankingParser
