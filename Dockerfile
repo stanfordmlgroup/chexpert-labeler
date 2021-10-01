@@ -1,15 +1,11 @@
 FROM continuumio/miniconda
 
-# Install Java
-# https://yarnaudov.com/fix-java-jdk-jre-debian-ubuntu-install.html
 RUN apt-get update --allow-releaseinfo-change
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get install -y default-jre
 
-
 WORKDIR /app/chexpert-labeler
 
-# Install prerequisites
 RUN git clone https://github.com/ncbi-nlp/NegBio.git
 ENV PYTHONPATH=NegBio:$PYTHONPATH
 
