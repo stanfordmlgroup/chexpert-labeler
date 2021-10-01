@@ -1,0 +1,10 @@
+*
+!args/
+!constants/
+!loader/
+!patterns/
+!phrases/
+!stages/
+!environment.yml
+!label.py
+!entrypoint.sh

@@ -4,6 +4,9 @@ CheXpert NLP tool to extract observations from radiology reports.
 Read more about our project [here](https://stanfordmlgroup.github.io/competitions/chexpert/) and our AAAI 2019 paper [here](https://arxiv.org/abs/1901.07031).
 
 ## Prerequisites
+
+Please install following dependencies or use the Dockerized labeler (see below).
+
 1. Clone the [NegBio repository](https://github.com/ncbi-nlp/NegBio):
 
 ```Shell
@@ -49,6 +52,14 @@ python label.py --reports_path {reports_path}
 ```
 
 Run `python label.py --help` for descriptions of all of the command-line arguments.
+
+### Dockerized Labeler
+
+```sh
+docker build -t chexpert-labeler:latest .
+docker run -v $(pwd):/data chexpert-labeler:latest \
+  python label.py --reports_path /data/sample_reports.csv --output_path /data/labeled_reports.csv --verbose
+```
 
 ## Contributions
 This repository builds upon the work of [NegBio](https://negbio.readthedocs.io/en/latest/).
