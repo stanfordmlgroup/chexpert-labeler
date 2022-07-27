@@ -33,9 +33,7 @@ class Loader(object):
 
             split_document = self.splitter.split_doc(document)
 
-            # assert len(split_document.passages) == 1,\
-            #    ('Each document must have a single passage, ' +
-            #     'the Impression section.')
+            assert len(split_document.passages) == 1
 
             collection.add_document(split_document)
 
@@ -50,17 +48,14 @@ class Loader(object):
                 if passage.infons['title'] in ('findings', 'impression'):
                     next_passage = document.passages[i+1]
                     assert 'title' not in next_passage.infons,\
-                        "Document contains empty impression section."
+                        f'Document contains empty {passage.infons["title"]} section.'
                     findings_impression_passages.append(next_passage)
-
-        # assert len(impression_passages) <= 1,\
-        #    (f"The document contains {len(document.passages)} impression " +
-        #     "passages.")
-
-        # assert len(impression_passages) >= 1,\
-        #    "The document contains no explicit impression passage."
-
-        document.passages = findings_impression_passages
+        
+        if findings_impression_passages:
+            extracted_passages = bioc.BioCPassage()
+            extracted_passages.offset = findings_impression_passages[0].offset
+            extracted_passages.text = ' '.join(map(lambda x: x.text, findings_impression_passages))
+            document.passages = [extracted_passages]
 
     def clean(self, report):
         """Clean the report text."""
