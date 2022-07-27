@@ -9,9 +9,9 @@ from constants import *
 
 class Loader(object):
     """Report impression loader."""
-    def __init__(self, reports_path, extract_impression=False):
+    def __init__(self, reports_path, extract_findings_impression=False):
         self.reports_path = reports_path
-        self.extract_impression = extract_impression
+        self.extract_findings_impression = extract_findings_impression
         self.punctuation_spacer = str.maketrans({key: f"{key} "
                                                  for key in ".,"})
         self.splitter = ssplit.NegBioSSplitter(newline=False)
@@ -27,9 +27,9 @@ class Loader(object):
             clean_report = self.clean(report)
             document = text2bioc.text2document(str(i), clean_report)
 
-            if self.extract_impression:
+            if self.extract_findings_impression:
                 document = section_split.split_document(document)
-                self.extract_impression_from_passages(document)
+                self.extract_findings_and_impression_from_passages(document)
 
             split_document = self.splitter.split_doc(document)
 
@@ -42,25 +42,25 @@ class Loader(object):
         self.reports = reports
         self.collection = collection
 
-    def extract_impression_from_passages(self, document):
+    def extract_findings_and_impression_from_passages(self, document):
         """Extract the Impression section from a Bioc Document."""
-        impression_passages = []
+        findings_impression_passages = []
         for i, passage in enumerate(document.passages):
             if 'title' in passage.infons:
-                if passage.infons['title'] == 'impression':
+                if passage.infons['title'] in ('findings', 'impression'):
                     next_passage = document.passages[i+1]
                     assert 'title' not in next_passage.infons,\
                         "Document contains empty impression section."
-                    impression_passages.append(next_passage)
+                    findings_impression_passages.append(next_passage)
 
-        assert len(impression_passages) <= 1,\
-            (f"The document contains {len(document.passages)} impression " +
-             "passages.")
+        # assert len(impression_passages) <= 1,\
+        #    (f"The document contains {len(document.passages)} impression " +
+        #     "passages.")
 
-        assert len(impression_passages) >= 1,\
-            "The document contains no explicit impression passage."
+        # assert len(impression_passages) >= 1,\
+        #    "The document contains no explicit impression passage."
 
-        document.passages = impression_passages
+        document.passages = findings_impression_passages
 
     def clean(self, report):
         """Clean the report text."""
