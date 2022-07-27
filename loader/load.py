@@ -33,9 +33,9 @@ class Loader(object):
 
             split_document = self.splitter.split_doc(document)
 
-            assert len(split_document.passages) == 1,\
-                ('Each document must have a single passage, ' +
-                 'the Impression section.')
+            # assert len(split_document.passages) == 1,\
+            #    ('Each document must have a single passage, ' +
+            #     'the Impression section.')
 
             collection.add_document(split_document)
 
