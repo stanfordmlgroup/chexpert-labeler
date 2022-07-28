@@ -28,12 +28,11 @@ class Loader(object):
             document = text2bioc.text2document(str(i), clean_report)
 
             if self.extract_findings_impression:
-                document = section_split.split_document(document)
-                self.extract_findings_and_impression_from_passages(document)
+                document = self.extract_findings_and_impression_from_passages(document)
 
             split_document = self.splitter.split_doc(document)
 
-            assert len(split_document.passages) == 1
+            assert len(split_document.passages) == 1, (f'Found {len(split_document.passages)} passages in document {i}')
 
             collection.add_document(split_document)
 
@@ -42,20 +41,23 @@ class Loader(object):
 
     def extract_findings_and_impression_from_passages(self, document):
         """Extract the Impression section from a Bioc Document."""
+        split_document = section_split.split_document(document)
         findings_impression_passages = []
-        for i, passage in enumerate(document.passages):
+        for i, passage in enumerate(split_document.passages):
             if 'title' in passage.infons:
-                if passage.infons['title'] in ('findings', 'impression'):
-                    next_passage = document.passages[i+1]
-                    assert 'title' not in next_passage.infons,\
-                        f'Document contains empty {passage.infons["title"]} section.'
-                    findings_impression_passages.append(next_passage)
+                if passage.infons['title'] in ('findings', 'impression') and len(split_document.passages) > i + 1:
+                    next_passage = split_document.passages[i+1]
+                    if 'title' not in next_passage.infons:
+                        findings_impression_passages.append(next_passage)
         
         if findings_impression_passages:
             extracted_passages = bioc.BioCPassage()
             extracted_passages.offset = findings_impression_passages[0].offset
             extracted_passages.text = ' '.join(map(lambda x: x.text, findings_impression_passages))
-            document.passages = [extracted_passages]
+            split_document.passages = [extracted_passages]
+            return split_document
+        else:
+            return document
 
     def clean(self, report):
         """Clean the report text."""
