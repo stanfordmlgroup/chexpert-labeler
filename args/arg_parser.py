@@ -13,10 +13,11 @@ class ArgParser(object):
         parser.add_argument('--reports_path',
                             required=True,
                             help='Path to file with radiology reports.')
-        parser.add_argument('--extract_findings_impression',
-                            action='store_true',
-                            help='Extract the findings and impression ' +
-                                 'sections of the report.')
+        parser.add_argument('--sections_to_extract',
+                            nargs='+',
+                            default=['impression'],
+                            help='Titles of the sections to extract from ' +
+                                 'each report.')
 
         # Phrases
         parser.add_argument('--mention_phrases_dir',

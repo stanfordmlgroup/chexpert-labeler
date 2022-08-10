@@ -9,9 +9,9 @@ from constants import *
 
 class Loader(object):
     """Report impression loader."""
-    def __init__(self, reports_path, extract_findings_impression=False):
+    def __init__(self, reports_path, sections_to_extract):
         self.reports_path = reports_path
-        self.extract_findings_impression = extract_findings_impression
+        self.sections_to_extract = sections_to_extract
         self.punctuation_spacer = str.maketrans({key: f"{key} "
                                                  for key in ".,"})
         self.splitter = ssplit.NegBioSSplitter(newline=False)
@@ -27,33 +27,34 @@ class Loader(object):
             clean_report = self.clean(report)
             document = text2bioc.text2document(str(i), clean_report)
 
-            if self.extract_findings_impression:
-                document = self.extract_findings_and_impression_from_passages(document)
+            if self.sections_to_extract:
+                document = self.extract_sections(document)
 
             split_document = self.splitter.split_doc(document)
 
-            assert len(split_document.passages) == 1, (f'Found {len(split_document.passages)} passages in document {i}')
+            assert len(split_document.passages) == 1,\
+                (f'Each document must be given as a single passage.')
 
             collection.add_document(split_document)
 
         self.reports = reports
         self.collection = collection
 
-    def extract_findings_and_impression_from_passages(self, document):
+    def extract_sections(self, document):
         """Extract the Impression section from a Bioc Document."""
         split_document = section_split.split_document(document)
-        findings_impression_passages = []
+        passages = []
         for i, passage in enumerate(split_document.passages):
             if 'title' in passage.infons:
-                if passage.infons['title'] in ('findings', 'impression') and len(split_document.passages) > i + 1:
+                if passage.infons['title'] in self.sections_to_extract and len(split_document.passages) > i+1:
                     next_passage = split_document.passages[i+1]
                     if 'title' not in next_passage.infons:
-                        findings_impression_passages.append(next_passage)
+                        passages.append(next_passage)
         
-        if findings_impression_passages:
+        if passages:
             extracted_passages = bioc.BioCPassage()
             extracted_passages.offset = findings_impression_passages[0].offset
-            extracted_passages.text = ' '.join(map(lambda x: x.text, findings_impression_passages))
+            extracted_passages.text = ' '.join(map(lambda x: x.text, passages))
             split_document.passages = [extracted_passages]
             return split_document
         else:
