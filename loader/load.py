@@ -47,7 +47,8 @@ class Loader(object):
         passages = []
         for i, passage in enumerate(split_document.passages):
             if 'title' in passage.infons:
-                if passage.infons['title'] in self.sections_to_extract and len(split_document.passages) > i+1:
+                if (passage.infons['title'] in self.sections_to_extract and
+                    len(split_document.passages) > i+1):
                     next_passage = split_document.passages[i+1]
                     if 'title' not in next_passage.infons:
                         passages.append(next_passage)
