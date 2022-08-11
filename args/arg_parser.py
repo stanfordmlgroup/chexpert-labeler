@@ -15,7 +15,7 @@ class ArgParser(object):
                             help='Path to file with radiology reports.')
         parser.add_argument('--sections_to_extract',
                             nargs='*',
-                            default=['impression'],
+                            default=[],
                             help='Titles of the sections to extract from ' +
                                  'each report.')
 

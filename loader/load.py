@@ -1,4 +1,5 @@
 """Define report loader class."""
+import warnings
 import re
 import bioc
 import pandas as pd
@@ -33,7 +34,7 @@ class Loader(object):
             split_document = self.splitter.split_doc(document)
 
             assert len(split_document.passages) == 1,\
-                (f'Each document must be given as a single passage.')
+                ('Each document must be given as a single passage.')
 
             collection.add_document(split_document)
 
@@ -58,6 +59,9 @@ class Loader(object):
             split_document.passages = [extracted_passages]
             return split_document
         else:
+            warnings.warn('Loader found document containing none of the ' + 
+                          'provided sections to extract. Returning original ' + 
+                          'document.')
             return document
 
     def clean(self, report):
