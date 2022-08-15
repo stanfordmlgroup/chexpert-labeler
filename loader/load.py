@@ -10,9 +10,10 @@ from constants import *
 
 class Loader(object):
     """Report impression loader."""
-    def __init__(self, reports_path, sections_to_extract):
+    def __init__(self, reports_path, sections_to_extract, extract_strict):
         self.reports_path = reports_path
         self.sections_to_extract = sections_to_extract
+        self.extract_strict = extract_strict
         self.punctuation_spacer = str.maketrans({key: f"{key} "
                                                  for key in ".,"})
         self.splitter = ssplit.NegBioSSplitter(newline=False)
@@ -53,10 +54,14 @@ class Loader(object):
                     if 'title' not in next_passage.infons:
                         passages.append(next_passage)
         
-        if passages:
+        if passages or self.extract_strict:
             extracted_passages = bioc.BioCPassage()
-            extracted_passages.offset = findings_impression_passages[0].offset
-            extracted_passages.text = ' '.join(map(lambda x: x.text, passages))
+            if passages:
+                extracted_passages.offset = passages[0].offset
+                extracted_passages.text = ' '.join(map(lambda x: x.text, passages))
+            else:
+                extracted_passages.offset = 0
+                extracted_passages.text = ''
             split_document.passages = [extracted_passages]
             return split_document
         else:
