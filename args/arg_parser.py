@@ -13,10 +13,20 @@ class ArgParser(object):
         parser.add_argument('--reports_path',
                             required=True,
                             help='Path to file with radiology reports.')
-        parser.add_argument('--extract_impression',
+        parser.add_argument('--sections_to_extract',
+                            nargs='*',
+                            default=[],
+                            help='Titles of the sections to extract from ' +
+                                 'each report.')
+        parser.add_argument('--extract_strict',
                             action='store_true',
-                            help='Extract the impression section of the ' +
-                                 'report.')
+                            help='Instructs the labeler to only extract the ' +
+                                 'sections given by sections_to_extract. ' +
+                                 'If this argument is given and a report is ' +
+                                 'encountered that does not contain any of ' +
+                                 'the provided sections, instead of loading ' +
+                                 'the original document, that report will be ' +
+                                 'loaded as an empty document.')
 
         # Phrases
         parser.add_argument('--mention_phrases_dir',
