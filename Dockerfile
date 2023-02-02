@@ -2,7 +2,7 @@ FROM continuumio/miniconda
 
 RUN apt-get update --allow-releaseinfo-change
 RUN mkdir -p /usr/share/man/man1
-RUN apt-get install -y default-jre
+RUN apt-get install -y default-jre curl
 
 WORKDIR /app/chexpert-labeler
 
@@ -18,5 +18,9 @@ RUN chmod +x ./entrypoint.sh
 
 RUN ./entrypoint.sh python -m nltk.downloader universal_tagset punkt wordnet
 RUN ./entrypoint.sh python -c "from bllipparser import RerankingParser; RerankingParser.fetch_and_load('GENIA+PubMed')"
+
+# Run labeler on sample reports. This will download and CoreNLP jar and other files and cache them in the docker image
+COPY sample_reports.csv .
+RUN ./entrypoint.sh python label.py --reports_path sample_reports.csv --output_path labeled_reports.csv --verbose
 
 ENTRYPOINT ["./entrypoint.sh"]
