@@ -2,7 +2,7 @@ FROM continuumio/miniconda
 
 RUN apt-get update --allow-releaseinfo-change
 RUN mkdir -p /usr/share/man/man1
-RUN apt-get install -y default-jre curl
+RUN apt-get install -y default-jre
 
 WORKDIR /app/chexpert-labeler
 
